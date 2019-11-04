@@ -1,0 +1,148 @@
+import numpy as np
+
+
+# FUNCTIONS TO TEST THE EXPONENTIALITY OF THE DISTRIBUTION OF TRANSFORMED ELEVATIONS
+# PART 1 OF FISHERNESS GOODNESS OF FIT TEST
+
+# vector = np.array([0,0,1]).reshape((3,1))
+def Rx(theta, vector):
+    # angles should be in radians
+    # make sure we have an np array
+    if type(vector) is np.ndarray:
+        pass  # this works for (N,M) and (N,) shapes
+    else:
+        vector = np.array(vector)
+    rotmat = np.array([[1, 0, 0],
+                       [0, np.cos(theta), -np.sin(theta)],
+                       [0, np.sin(theta), np.cos(theta)]])
+    # result = rotmat @ vector
+    result = np.matmul(rotmat, vector)
+    return result
+
+
+def Ry(theta, vector):
+    if type(vector) is np.ndarray:
+        pass
+    else:
+        vector = np.array(vector)
+    rotmat = np.array([[np.cos(theta), 0, np.sin(theta)],
+                       [0, 1, 0],
+                       [-np.sin(theta), 0, np.cos(theta)]])
+    result = np.matmul(rotmat, vector)
+    return result
+
+
+def Rz(theta, vector):
+    if type(vector) is np.ndarray:
+        pass
+    else:
+        vector = np.array(vector)
+    rotmat = np.array([[np.cos(theta), -np.sin(theta), 0],
+                       [np.sin(theta), np.cos(theta), 0],
+                       [0, 0, 1]])
+    result = np.matmul(rotmat, vector)
+    return result
+
+
+def Test3Rot(theta, phi, vector):
+    if type(vector) is np.ndarray:
+        pass
+    else:
+        vector = np.array(vector)
+
+
+def Xi(elearray: object) -> object:
+    elearray = np.array(elearray)
+    result = 1 - np.cos(elearray)
+    return result
+
+
+def kmle(thetas):
+    # the thetas have to be transformed before input to this function, sample mean direction is the pole theta' = 0
+    if type(thetas) is np.ndarray:
+        pass
+    else:
+        thetas = np.array(thetas)
+    n = len(thetas)
+    k = (n-1) / sum(1 - np.cos(thetas))
+    return k
+
+
+def F(k, elevation):
+    # elevation is transformed with Xi before being input to this function
+    if type(elevation) is np.ndarray:
+        pass
+    else:
+        elevation = np.array(elevation)
+    elevation = np.sort(elevation)
+    result = 1 - np.exp(-k*elevation)
+    return result
+
+
+def Dnplus(FX):
+    # use F for the exponentiality test and F2 for normality test as the 'function' argument
+    n = len(FX)
+    array1 = np.zeros(len(FX))
+    for i in range(len(FX)):
+        array1[i] = i/n - FX[i]
+    max1 = np.max(array1)
+    return max1
+
+
+def Dnminus(FX):
+    # use F for the exponentiality test and F2 for normality test as the 'function' argument
+    n = len(FX)
+    array2 = np.zeros(len(FX))
+    for i in range(len(FX)):
+        array2[i] = FX[i] - (i - 1)/n
+    max2 = np.max(array2)
+    return max2
+
+
+def Dn(max1, max2):
+    Dnmax = np.max([max1, max2])
+    return Dnmax
+
+
+def Me(Dnmax, n):
+    # this is a function for Kolmogorov Smirnov statistic to test for exponentiality of elevation
+    result = (Dnmax - 0.2/n) * (np.sqrt(n) + 0.26 + 0.5/np.sqrt(n))
+    return result
+
+
+def Mn(Dnmax, n):
+    # this is a function for Kolmogorov Smirnov statistic to test for exponentiality of elevation
+    result = Dnmax * (np.sqrt(n) - 0.01 + 0.85/np.sqrt(n))
+    return result
+
+
+# FUNCTIONS TO TEST THE UNIFORMITY OF AZIMUTHS
+# PART 2 OF THE FISHERNESS GOODNESS OF FIT TEST
+def F2(azimuth):
+    # angles have to be in radians
+    if type(azimuth) is np.ndarray:
+        pass
+    else:
+        azimuth = np.array(azimuth)
+    azimuth = np.sort(azimuth)
+    result = azimuth/(2*np.pi)
+    return result
+
+
+def Vn(Dplus, Dminus):
+    result = Dplus+Dminus
+    return result
+
+
+def MV(V, n):
+    result = V*(np.sqrt(n) - 0.467 + 1.623/np.sqrt(n))
+    return result
+
+
+# FUNCTIONS TO TEST THE NORMALITY OF THE PRODUCT OF AZIMUTHS AND ELEVATIONS
+# FINAL PART 3 OF THE FISHERNESS GOODNESS OF FIT TEST
+
+
+
+# a = Rx(np.pi/2, vector) 0.6628932090204712
+# print (a)
