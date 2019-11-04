@@ -4,10 +4,10 @@ import Rot3D
 from scipy.stats import norm
 
 #THIS IS A GOODNESS OF FIT TEST FOR FISHERNESS
-g1 = pd.read_csv('/Users/nikitazabolotniy/Desktop/DataAnal_Python/TXT/Hermetia_F_H1.txt', header=None)
-g1YJ = pd.read_csv('/Users/nikitazabolotniy/Desktop/YJHermetia_F_H1.txt', header=None)
-g2 = pd.read_csv('/Users/nikitazabolotniy/Desktop/DataAnal_Python/TXT/Hermetia_M_H1.txt', header=None)
-g2YJ = pd.read_csv('/Users/nikitazabolotniy/Desktop/YJHermetia_M_H1.txt', header=None)
+g1 = pd.read_csv('/Users/nikitazabolotniy/Hermetia_F_H1.txt', header=None)
+g1YJ = pd.read_csv('/Users/nikitazabolotniy/YJHermetia_F_H1.txt', header=None)
+g2 = pd.read_csv('/Users/nikitazabolotniy/Hermetia_M_H1.txt', header=None)
+g2YJ = pd.read_csv('/Users/nikitazabolotniy/YJHermetia_M_H1.txt', header=None)
 g1 = pd.concat([g1, g1YJ], axis=0,join='outer',ignore_index=True)
 g2 = pd.concat([g2, g2YJ], axis=0,join='outer',ignore_index=True)
 g = pd.concat([g1,g2],axis=0, join='outer',ignore_index=False, keys=['F','M'])
