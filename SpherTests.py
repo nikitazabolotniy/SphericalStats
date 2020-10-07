@@ -69,7 +69,7 @@ High_k_Ftest = ((res_lenF+res_lenM - res_len)/(p-1))/((n - res_lenF - res_lenM)/
 # hence we accept H0 and conclude that the means are equal for males and females, k are 753 for F and 250 for M
 
 # TEST FOR EQUALITY OF CONCENTRATION PARAMETERS mean directions mu1 and m0 unknown (10.5.2 in the book)
-F = ((n1 - res_lenF)/(n1-1)*(p-1))/((n2 - res_lenM)/(n2-1)*(p-1))
+F = ((n1 - res_lenF)/((n1-1)*(p-1)))/((n2 - res_lenM)/((n2-1)*(p-1)))
 # F test for 14,6 DoF gives 5.12 upper and 0.35 lower critical values, F = 0.2985 so we reject H0
 # stating that the concentration parameters are equal with 98% confidence
 # but also want to test the Fisherness of the combined sample
