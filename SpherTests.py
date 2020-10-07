@@ -64,7 +64,7 @@ n2 = g.loc['M'].shape[0]
 p = 3
 q=2
 # TEST FOR EQUALITY OF MEAN DIRECTIONS for large k (10.5.1) F{p-1,(p-1)*(n-2)}
-High_k_Ftest = ((res_lenF+res_lenM - res_len)/(p-1))/((n - res_lenF - res_lenM)/(n-2)*(p-1))
+High_k_Ftest = ((res_lenF+res_lenM - res_len)/(p-1))/((n - res_lenF - res_lenM)/((n-2)*(p-1)))
 # at 5% confidence, critical values of Ftest is 3.232, statistic above gives 0.31, so we cant reject H0,
 # hence we accept H0 and conclude that the means are equal for males and females, k are 753 for F and 250 for M
 
