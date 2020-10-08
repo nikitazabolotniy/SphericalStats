@@ -64,6 +64,7 @@ n2 = g.loc['M'].shape[0]
 p = 3
 q=2
 # TEST FOR EQUALITY OF MEAN DIRECTIONS for large k (10.5.1) F{p-1,(p-1)*(n-2)}
+# assume equality of concentration parameters 
 High_k_Ftest = ((res_lenF+res_lenM - res_len)/(p-1))/((n - res_lenF - res_lenM)/((n-2)*(p-1)))
 # at 5% confidence, critical values of Ftest is 3.232, statistic above gives 0.31, so we cant reject H0,
 # hence we accept H0 and conclude that the means are equal for males and females, k are 753 for F and 250 for M
@@ -80,10 +81,11 @@ A = ((n1*mean_res_lengthF**2 + n2*mean_res_lengthM**2 - mean_res_length**2)/((q-
 # this test rejects H0, maybe due to a large difference in k
 
 # for p=3 and R>=0.9
+# mardia 10.3.7
 k = (p-1)/(2*(1-mean_res_length))  # 190.8647162997246
 # any p and R?
 k1 = mean_res_length*(p-mean_res_length**2)/(1-mean_res_length**2)  # 191.3581637180914, formula from wiki
-# 10.3.25 gives an approximately unbiased estimator
+# mardia 10.3.25 gives an approximately unbiased estimator
 kunb = ((n-1)*(p-1) - 2)/(2*n*(1 - mean_res_length))
 # k = 100 via A^{-1}(R)
 # for p=3 and R>=0.9
@@ -94,6 +96,9 @@ k1F = mean_res_length*(p-mean_res_lengthF**2)/(1-mean_res_lengthF**2)  # 191.358
 kM = (p-1)/(2*(1-mean_res_lengthM))  # 190.8647162997246
 k1M = mean_res_length*(p-mean_res_lengthM**2)/(1-mean_res_lengthM**2)  # 191.3581637180914, formula from wiki
 # k = 100 via A^{-1}(R)
+
+# after 10.3.25 there's an approximately unbiased estimator unless both n and k are small
+kapunb = (1 - 1/n1)**2 * (p-1) / (2*(1 - mean_res_lengthF))
 
 # test for mean direction
 mean_direction = np.array([0,0,-1])
