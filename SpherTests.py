@@ -86,6 +86,7 @@ k = (p-1)/(2*(1-mean_res_length))  # 190.8647162997246
 # any p and R?
 k1 = mean_res_length*(p-mean_res_length**2)/(1-mean_res_length**2)  # 191.3581637180914, formula from wiki
 # mardia 10.3.25 gives an approximately unbiased estimator
+# for large k and n
 kunb = ((n-1)*(p-1) - 2)/(2*n*(1 - mean_res_length))
 # k = 100 via A^{-1}(R)
 # for p=3 and R>=0.9
