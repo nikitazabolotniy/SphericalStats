@@ -98,7 +98,7 @@ kM = (p-1)/(2*(1-mean_res_lengthM))  # 190.8647162997246
 k1M = mean_res_length*(p-mean_res_lengthM**2)/(1-mean_res_lengthM**2)  # 191.3581637180914, formula from wiki
 # k = 100 via A^{-1}(R)
 
-# after 10.3.25 there's an approximately unbiased estimator unless both n and k are small
+# after 10.3.25 there's an approximately unbiased estimator for 10.3.7 and p = 3, unless both n and k are small
 kapunb = (1 - 1/n1)**2 * (p-1) / (2*(1 - mean_res_lengthF))
 
 # test for mean direction
