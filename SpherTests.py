@@ -81,7 +81,7 @@ A = ((n1*mean_res_lengthF**2 + n2*mean_res_lengthM**2 - mean_res_length**2)/((q-
 # this test rejects H0, maybe due to a large difference in k
 
 # for p=3 and R>=0.9
-# mardia 10.3.7
+# mardia 10.3.7, for large k
 k = (p-1)/(2*(1-mean_res_length))  # 190.8647162997246
 # any p and R?
 k1 = mean_res_length*(p-mean_res_length**2)/(1-mean_res_length**2)  # 191.3581637180914, formula from wiki
